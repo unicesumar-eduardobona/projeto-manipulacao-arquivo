@@ -1,14 +1,3 @@
-
-<?php
-
-    // utilizar este arquivo ao invés de index.html
-    // pois com o PHP vai ser possível tornar a lista de arquivos
-    // uma lista dinâmica, ou seja, com base no que existe na pasta
-    // e é preciso formatar o formulário para que esteja
-    // enviando seus dados de forma correta para o script cadastrar_arquivo.php
-    // ** lembre-se do método, do action e do enctype
-
-?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -115,22 +104,21 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <!-- ISSO AQUI PRECISA FICAR DINÂMICO -->
+                                        <?php
+                                            include '../classes/Diretorio.php';
+                                            $diretorio = new Diretorio();
+                                        
+                                            $arquivos = $diretorio->recuperarListaArquivos();
+                                            foreach($arquivos as $i => $arquivo){
+                                        ?>
                                         <tr>
-                                            <td>1</td>
-                                            <td>Foto Mar.jpeg</td>
-                                            <td><a href="#">Excluir</a></td>
+                                            <td><?php echo $i ?></td>
+                                            <td><?php echo $arquivo ?></td>
+                                            <td><a href="excluir_arquivo.php?arquivo=<?php echo $arquivo?>">Excluir</a></td>
                                         </tr>
-                                        <tr>
-                                            <td>2</td>
-                                            <td>Foto Praia.jpeg</td>
-                                            <td><a href="#">Excluir</a></td>
-                                        </tr>
-                                        <tr>
-                                            <td>3</td>
-                                            <td>Foto Montanha.jpg</td>
-                                            <td><a href="#">Excluir</a></td>
-                                        </tr>
+                                        <?php
+                                            } // fim do foreach
+                                        ?>
                                     </tbody>
                                 </table>
                             </div>
