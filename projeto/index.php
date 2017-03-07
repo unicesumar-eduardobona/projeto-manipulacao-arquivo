@@ -61,15 +61,15 @@
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-12">
-                                    <form role="form">
+                                    <form role="form" action="./cadastrar_arquivo.php" method="POST" enctype="multipart/form-data">
                                         <div class="form-group">
                                             <label>Nome do Arquivo</label>
-                                            <input class="form-control">
+                                            <input name="nome" class="form-control">
                                             <p class="help-block">Digite o nome que o arquivo será salvo...</p>
                                         </div>
                                         <div class="form-group">
                                             <label>Anexar Arquivo</label>
-                                            <input type="file">
+                                            <input name="arquivo" type="file">
                                         </div>
                                         <button type="submit" class="btn btn-active">Enviar Arquivo</button>
                                     </form>
@@ -114,7 +114,7 @@
                                         <tr>
                                             <td><?php echo $i ?></td>
                                             <td><?php echo $arquivo ?></td>
-                                            <td><a href="excluir_arquivo.php?arquivo=<?php echo $arquivo?>">Excluir</a></td>
+                                            <td><a href="./excluir_arquivo.php?arquivo=<?php echo $arquivo?>">Excluir</a></td>
                                         </tr>
                                         <?php
                                             } // fim do foreach

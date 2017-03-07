@@ -1,11 +1,33 @@
 <?php
 
-// script que recebe os dados do formulário
-// trata os dados
-// recebe o upload
-// recebe o nome do arquivo
-// move o arquivo para a pasta uploads
-// salvando com o nome informado pelo input
-// depois redireciona para a lista de arquivos novamente
+if(count($_POST) == 0 and count($_FILES) == 0){
+	header('location: index.php');
+	exit;
+}
+
+//var_dump($_POST);
+//var_dump($_FILES);
+
+$nome = $_POST["nome"];
+$arquivo = $_FILES["arquivo"];
+
+if($arquivo["type"]=="image/png"){
+	$extensao=".png";
+	$nome_arquivo = $nome . $extensao;
+	move_uploaded_file($arquivo["tmp_name"], "../uploads/" . $nome_arquivo);
+
+	header('location: index.php');
+	exit;
+}else if($arquivo["type"]=="image/jpeg"){
+	$extensao=".jpeg";
+	$nome_arquivo = $nome . $extensao;
+
+	move_uploaded_file($arquivo["tmp_name"], "../uploads/" . $nome_arquivo);
+	header('location: index.php');
+	exit;
+}else{
+	header('location: index.php');
+	exit;
+}
 
 ?>
