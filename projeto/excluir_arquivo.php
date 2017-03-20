@@ -1,16 +1,20 @@
 <?php
 
 include '../classes/Diretorio.php';
+$diretorio = new Diretorio();
 
 if (isset($_GET["arquivo"])) {
-	$nome_arquivo = "../uploads/" . $_GET["arquivo"];
 
-	$diretorio = new Diretorio();
-	if (file_exists($nome_arquivo)) {
-		$diretorio->excluirArquivo($nome_arquivo);
+	$nome_arquivo = $_GET["arquivo"];
+
+	if($diretorio->excluirArquivo($nome_arquivo)){
+		header ('location: index.php?mensagem=sucesso');
+	}else{
+		header ('location: index.php?mensagem=erro');
 	}
+
 }
 
-header ('location: index.php');
+
 
 ?>

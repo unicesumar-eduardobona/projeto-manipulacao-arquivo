@@ -110,6 +110,9 @@
                                         
                                             $arquivos = $diretorio->recuperarListaArquivos();
                                             foreach($arquivos as $i => $arquivo){
+                                                if($arquivo == "." || $arquivo == "..") {
+                                                    continue;
+                                                }
                                         ?>
                                         <tr>
                                             <td><?php echo $i ?></td>
